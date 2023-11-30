@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import React from 'react';
-import Navigator from './src/navigators/navigator';
+import Navigator from './src/navigators/Navigator';
 import { Provider } from 'react-redux';
 import { store } from './src/store';
 
