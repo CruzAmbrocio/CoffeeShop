@@ -1,27 +1,25 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import coffeeData from "../data/CoffeeData";
-import { CoffeeTypes } from "../models/CoffeeTypes";
+import { CoffeeType } from "../models/CoffeeType";
 import { RootState } from ".";
 
-
 interface CoffeeTypesState {
-    coffeeTypes: CoffeeTypes[];
-  }
-  
-  const initialState: CoffeeTypesState = {
-    coffeeTypes: coffeeData,
-  };
+  coffeeTypes: CoffeeType[];
+};
+
+const initialState: CoffeeTypesState = {
+  coffeeTypes: [],
+};
 
 const coffeeSlice = createSlice({
-    name: 'coffeeTypes',
-    initialState,
-    reducers: {
-      setCoffeeTypes: (state, action: PayloadAction<CoffeeTypes[]>) => {
-        state.coffeeTypes = action.payload;
-      },
+  name: 'coffeeTypes',
+  initialState,
+  reducers: {
+    setCoffeeTypes: (state, action: PayloadAction<CoffeeType[]>) => {
+      (state as any).coffeeTypes = action.payload;
     },
-  });
+  },
+});
 
-  export const { setCoffeeTypes } = coffeeSlice.actions;
-  export const selectCoffeeTypes = (state: RootState) => state.coffeeTypes.coffeeTypes;
-  export default coffeeSlice.reducer;
+export const { setCoffeeTypes } = coffeeSlice.actions;
+export const selectCoffeeTypes = (state: RootState) => state.coffeeTypes.coffeeTypes;
+export default coffeeSlice.reducer;

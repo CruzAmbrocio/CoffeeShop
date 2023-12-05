@@ -1,18 +1,23 @@
 import { Dimensions, FlatList, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import React, { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectCoffeeBeans } from '../store/BeansSlice';
-import { selectCoffeeTypes } from '../store/CoffeeSlice';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCoffeeBeans, setCoffeeBeans } from '../store/BeansSlice';
+import { selectCoffeeTypes, setCoffeeTypes } from '../store/CoffeeSlice';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 import HeaderBar from '../components/HeaderBar';
 import CustomIcon from '../components/CustomIcon';
 import CoffeeCard from '../components/CoffeeCard';
 import BeansData from '../data/BeansData';
+import coffeeData from '../data/CoffeeData';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}:any) => {
   const coffeeBeans = useSelector(selectCoffeeBeans);
   const coffeeTypes = useSelector(selectCoffeeTypes);
+  const dispatch = useDispatch();
+
+  dispatch(setCoffeeTypes(coffeeData));
+  dispatch(setCoffeeBeans(BeansData));
 
   const getCategoriesFromData = (data: any) => {
     const categoriesSet = new Set();
@@ -34,7 +39,7 @@ const HomeScreen = () => {
   };
 
   const [categories, setCategories] = useState(
-    getCategoriesFromData(coffeeTypes)
+    getCategoriesFromData(coffeeData)
   );
   const [searchText, setSearchText] = useState('');
   const [categoryIndex, setCategoryIndex] = useState({
@@ -42,7 +47,7 @@ const HomeScreen = () => {
     category: categories[0],
   });
   const [sortedCoffee, setSortedCoffee] = useState(
-    getCoffeeList(categoryIndex.category, coffeeTypes)
+    getCoffeeList(categoryIndex.category, coffeeData)
   );
 
   const listRef: any = useRef<FlatList>();
@@ -56,7 +61,7 @@ const HomeScreen = () => {
       });
       setCategoryIndex({ index: 0, category: categories[0] });
       setSortedCoffee([
-        ...coffeeTypes.filter((item: any) =>
+        ...coffeeData.filter((item: any) =>
           item.name.toLowerCase().includes(search.toLocaleLowerCase())
         )
       ]);
@@ -69,7 +74,7 @@ const HomeScreen = () => {
       offset: 0
     });
     setCategoryIndex({ index: 0, category: categories[0] });
-    setSortedCoffee([...coffeeTypes]);
+    setSortedCoffee([...coffeeData]);
     setSearchText('');
   }
 
@@ -139,7 +144,7 @@ const HomeScreen = () => {
                     })
                     setCategoryIndex({ index: index, category: categories[index] })
                     setSortedCoffee([
-                      ...getCoffeeList(categories[index], coffeeTypes)
+                      ...getCoffeeList(categories[index], coffeeData)
                     ])
                   }}>
                   <Text style={[
@@ -166,7 +171,7 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => { }}>
+              <TouchableOpacity onPress={() => { navigation.navigate("Details") }}>
                 <CoffeeCard
                   name={item.name}
                   id={item.id}
@@ -194,7 +199,7 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => { }}>
+              <TouchableOpacity onPress={() => { navigation.navigate("Details") }}>
                 <CoffeeCard
                   name={item.name}
                   id={item.id}
