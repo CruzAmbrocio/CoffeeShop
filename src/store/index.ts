@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import BeansSlice from "./BeansSlice";
 import CoffeeSlice from "./CoffeeSlice";
+import CartSlice from "./CartSlice";
 
 export const store = configureStore({
     reducer: {
-        coffeeBeans: BeansSlice,
-        coffeeTypes: CoffeeSlice,
+        coffeeData: CoffeeSlice,
+        cart: CartSlice
     }
 });
 export type RootState = ReturnType<typeof store.getState>;

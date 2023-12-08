@@ -1,8 +1,7 @@
 import { Dimensions, FlatList, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCoffeeBeans, setCoffeeBeans } from '../store/BeansSlice';
-import { selectCoffeeTypes, setCoffeeTypes } from '../store/CoffeeSlice';
+import { selectCoffeeTypes, setCoffeeTypes, setCoffeeBeans } from '../store/CoffeeSlice';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 import HeaderBar from '../components/HeaderBar';
@@ -12,8 +11,8 @@ import BeansData from '../data/BeansData';
 import coffeeData from '../data/CoffeeData';
 
 const HomeScreen = ({navigation}:any) => {
-  const coffeeBeans = useSelector(selectCoffeeBeans);
-  const coffeeTypes = useSelector(selectCoffeeTypes);
+  //const coffeeBeans = useSelector(selectCoffeeBeans);
+  //const coffeeTypes = useSelector(selectCoffeeTypes);
   const dispatch = useDispatch();
 
   dispatch(setCoffeeTypes(coffeeData));
@@ -171,7 +170,7 @@ const HomeScreen = ({navigation}:any) => {
           keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => { navigation.navigate("Details") }}>
+              <TouchableOpacity onPress={() => { navigation.push("Details", {index: item.index, id: item.id, type:item.type}) }}>
                 <CoffeeCard
                   name={item.name}
                   id={item.id}
@@ -199,7 +198,7 @@ const HomeScreen = ({navigation}:any) => {
           keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => { navigation.navigate("Details") }}>
+              <TouchableOpacity onPress={() => { navigation.push("Details", {index: item.index, id: item.id, type:item.type}) }}>
                 <CoffeeCard
                   name={item.name}
                   id={item.id}
