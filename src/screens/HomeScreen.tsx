@@ -1,7 +1,7 @@
-import { Dimensions, FlatList, Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCoffeeTypes, setCoffeeTypes, setCoffeeBeans } from '../store/CoffeeSlice';
+import { Dimensions, FlatList, ScrollView, StatusBar, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setCoffeeTypes, setCoffeeBeans } from '../store/CoffeeSlice';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 import HeaderBar from '../components/HeaderBar';
@@ -9,10 +9,9 @@ import CustomIcon from '../components/CustomIcon';
 import CoffeeCard from '../components/CoffeeCard';
 import BeansData from '../data/BeansData';
 import coffeeData from '../data/CoffeeData';
+import { addToCart } from '../store/CartSlice';
 
-const HomeScreen = ({navigation}:any) => {
-  //const coffeeBeans = useSelector(selectCoffeeBeans);
-  //const coffeeTypes = useSelector(selectCoffeeTypes);
+const HomeScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
 
   dispatch(setCoffeeTypes(coffeeData));
@@ -66,7 +65,10 @@ const HomeScreen = ({navigation}:any) => {
       ]);
     }
   }
-
+  const addToCartHandler = ({ id, index, name, roasted, imagelink_square, special_ingredient, type, price }: any) => {
+    dispatch(addToCart({ id, index, name, roasted, imagelink_square, special_ingredient, type, prices: price }));
+    ToastAndroid.showWithGravity(`${name} added to the Cart!`, ToastAndroid.SHORT, ToastAndroid.CENTER);
+  }
   const resetSearchCoffee = () => {
     listRef?.current?.scrollToOffset({
       animated: true,
@@ -103,8 +105,8 @@ const HomeScreen = ({navigation}:any) => {
             placeholder='Find your coffee...'
             value={searchText}
             onChangeText={text => {
-                setSearchText(text);
-                searchCoffee(text);
+              setSearchText(text);
+              searchCoffee(text);
             }}
             placeholderTextColor={COLORS.primaryLightGreyHex}
             style={styles.textInputContainer}
@@ -170,7 +172,7 @@ const HomeScreen = ({navigation}:any) => {
           keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => { navigation.push("Details", {index: item.index, id: item.id, type:item.type}) }}>
+              <TouchableOpacity onPress={() => { navigation.push("Details", { index: item.index, id: item.id, type: item.type }) }}>
                 <CoffeeCard
                   name={item.name}
                   id={item.id}
@@ -181,7 +183,7 @@ const HomeScreen = ({navigation}:any) => {
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
                   price={item.prices[2]}
-                  buttonPressHandler={() => { }}
+                  buttonPressHandler={addToCartHandler}
                 />
               </TouchableOpacity>
             );
@@ -198,7 +200,7 @@ const HomeScreen = ({navigation}:any) => {
           keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => { navigation.push("Details", {index: item.index, id: item.id, type:item.type}) }}>
+              <TouchableOpacity onPress={() => { navigation.push("Details", { index: item.index, id: item.id, type: item.type }) }}>
                 <CoffeeCard
                   name={item.name}
                   id={item.id}
@@ -209,7 +211,7 @@ const HomeScreen = ({navigation}:any) => {
                   special_ingredient={item.special_ingredient}
                   average_rating={item.average_rating}
                   price={item.prices[2]}
-                  buttonPressHandler={() => { }}
+                  buttonPressHandler={addToCartHandler}
                 />
               </TouchableOpacity>
             );
@@ -278,11 +280,11 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.space_20,
     paddingHorizontal: SPACING.space_30
   },
-  emptyListContainer:{
-    width:Dimensions.get('window').width - SPACING.space_30 * 2,
-    alignItems:'center',
-    justifyContent:'center',
-    paddingVertical:SPACING.space_36 * 3.6
+  emptyListContainer: {
+    width: Dimensions.get('window').width - SPACING.space_30 * 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: SPACING.space_36 * 3.6
   },
   coffeeBeansTitle: {
     fontSize: FONTSIZE.size_18,

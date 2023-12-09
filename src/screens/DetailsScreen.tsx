@@ -1,4 +1,4 @@
-import { ScrollView, StatusBar, StyleSheet, Text, View, TouchableWithoutFeedback,TouchableOpacity } from 'react-native';
+import { ScrollView, StatusBar, StyleSheet, Text, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,8 +25,8 @@ const DetailsScreen = ({ navigation, route }: any) => {
     const details = { favorite: favorite, type: type, id: id };
     favorite ? dispatch(removeFromFavorite(details)) : dispatch(addToFavorite(details));
   }
-  const addToCartHandler =({id, index, name, roasted, imagelink_square, special_ingredient, type, price}:any)=>{
-    dispatch(addToCart({id, index, name, roasted, imagelink_square, special_ingredient, type, prices:[{...price}]}))
+  const addToCartHandler = ({ id, index, name, roasted, imagelink_square, special_ingredient, type, price }: any) => {
+    dispatch(addToCart({ id, index, name, roasted, imagelink_square, special_ingredient, type, prices: [{ ...price }] }))
   }
   return (
     <View style={styles.screenContainer}>
@@ -75,10 +75,10 @@ const DetailsScreen = ({ navigation, route }: any) => {
           <Text style={styles.infoTitle}>Size</Text>
           <View style={styles.sizeOuterContainer}>
             {
-              itemOfIndex.prices.map((data:any)=>(
+              itemOfIndex.prices.map((data: any) => (
                 <TouchableOpacity
                   key={data.size}
-                  onPress={()=>{
+                  onPress={() => {
                     setPrice(data);
                   }}
                   style={[
@@ -86,8 +86,8 @@ const DetailsScreen = ({ navigation, route }: any) => {
                     {
                       borderColor:
                         data.size == price.size
-                        ?COLORS.primaryOrangeHex
-                        :COLORS.primaryDarkGreyHex
+                          ? COLORS.primaryOrangeHex
+                          : COLORS.primaryDarkGreyHex
                     }
                   ]}>
                   <Text
@@ -96,12 +96,12 @@ const DetailsScreen = ({ navigation, route }: any) => {
                       {
                         fontSize:
                           itemOfIndex.type == 'bean'
-                            ?FONTSIZE.size_14
-                            :FONTSIZE.size_16,
+                            ? FONTSIZE.size_14
+                            : FONTSIZE.size_16,
                         color:
                           data.size == price.size
-                            ?COLORS.primaryOrangeHex
-                            :COLORS.secondaryLightGreyHex
+                            ? COLORS.primaryOrangeHex
+                            : COLORS.secondaryLightGreyHex
                       }
                     ]}
                   >{data.size}</Text>
@@ -112,7 +112,7 @@ const DetailsScreen = ({ navigation, route }: any) => {
         </View>
         <PaymentFooter
           price={price}
-          buttonPressHandler={()=>{
+          buttonPressHandler={() => {
             addToCartHandler({
               id: itemOfIndex.id,
               index: itemOfIndex.index,
@@ -124,7 +124,7 @@ const DetailsScreen = ({ navigation, route }: any) => {
               price: price,
             })
           }}
-          buttonTitle='Add to cart'/>
+          buttonTitle='Add to cart' />
       </ScrollView>
     </View>
   );
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   scrollViewFlex: {
     flexGrow: 1,
-    justifyContent:'space-between'
+    justifyContent: 'space-between'
   },
   footerInfoArea: {
     padding: SPACING.space_20
@@ -155,23 +155,23 @@ const styles = StyleSheet.create({
     color: COLORS.primaryWhiteHex,
     marginBottom: SPACING.space_30
   },
-  sizeOuterContainer:{
-    flex:1,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    gap:SPACING.space_20
+  sizeOuterContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: SPACING.space_20
   },
-  sizeBox:{
-    flex:1,
-    backgroundColor:COLORS.primaryDarkGreyHex,
-    alignItems:'center',
-    justifyContent:'center',
-    height:SPACING.space_24 * 2,
-    borderRadius:BORDERRADIUS.radius_10,
-    borderWidth:2
+  sizeBox: {
+    flex: 1,
+    backgroundColor: COLORS.primaryDarkGreyHex,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: SPACING.space_24 * 2,
+    borderRadius: BORDERRADIUS.radius_10,
+    borderWidth: 2
   },
-  sizeText:{
-    fontFamily:FONTFAMILY.poppins_medium
+  sizeText: {
+    fontFamily: FONTFAMILY.poppins_medium
   }
 });
 
