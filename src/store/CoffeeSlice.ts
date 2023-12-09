@@ -35,7 +35,7 @@ const coffeeSlice = createSlice({
       const favoriteItem = details.type == "Coffee" ? state.coffeeTypes.find((item) => item.id == details.id) : state.coffeeBeans.find((item) => item.id == details.id);
       if (favoriteItem) {
         favoriteItem.favorite = true;
-        state.favoriteList.push(details);
+        state.favoriteList.push(favoriteItem);
       }
     },
     removeFromFavorite: (state, action) => {
@@ -52,4 +52,5 @@ const coffeeSlice = createSlice({
 export const { setCoffeeBeans, setCoffeeTypes, addToFavorite, removeFromFavorite } = coffeeSlice.actions;
 export const selectCoffeeTypes = (state: RootState) => state.coffeeData.coffeeTypes;
 export const selectCoffeeBeans = (state: RootState) => state.coffeeData.coffeeBeans;
+export const selectFavoriteList = (state: RootState) => state.coffeeData.favoriteList;
 export default coffeeSlice.reducer;
