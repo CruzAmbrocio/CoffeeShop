@@ -13,7 +13,7 @@ const TabsNavigator = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator 
+    <Tab.Navigator
       screenOptions={{
         headerShown:false,
         tabBarHideOnKeyboard:true,
@@ -23,13 +23,13 @@ const TabsNavigator = () => {
           <BlurView overlayColor='' blurAmount={15} style={styles.BlurViewStyles}/>
         )
       }}>
-      <Tab.Screen 
+      <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
           tabBarIcon:({focused, color, size})=>(
             <CustomIcon name='home' size={25} color={
-              focused?COLORS.primaryOrangeHex:COLORS.primaryGreyHex
+              focused?COLORS.primaryOrangeHex:COLORS.primaryLightGreyHex
             } />
           )
         }}/>
@@ -37,7 +37,7 @@ const TabsNavigator = () => {
         options={{
           tabBarIcon:({focused, color, size})=>(
             <CustomIcon name='cart' size={25} color={
-              focused?COLORS.primaryOrangeHex:COLORS.primaryGreyHex
+              focused?COLORS.primaryOrangeHex:COLORS.primaryLightGreyHex
             } />
           )
         }}/>
@@ -45,7 +45,7 @@ const TabsNavigator = () => {
         options={{
           tabBarIcon:({focused, color, size})=>(
             <CustomIcon name='like' size={25} color={
-              focused?COLORS.primaryOrangeHex:COLORS.primaryGreyHex
+              focused?COLORS.primaryOrangeHex:COLORS.primaryLightGreyHex
             } />
           )
         }}/>
@@ -53,7 +53,7 @@ const TabsNavigator = () => {
         options={{
           tabBarIcon:({focused, color, size})=>(
             <CustomIcon name='bell' size={25} color={
-              focused?COLORS.primaryOrangeHex:COLORS.primaryGreyHex
+              focused?COLORS.primaryOrangeHex:COLORS.primaryLightGreyHex
             } />
           )
         }}/>
