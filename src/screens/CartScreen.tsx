@@ -16,7 +16,7 @@ const CartScreen = ({ navigation, route }: any) => {
   const total = useSelector(selectTotal);
 
   const buttonPressHandler = () => {
-    navigation.push('Payment');
+    navigation.push('Payment', { amount: total });
   }
   const incrementCartItemQuantityHandler = (
     id: string,
