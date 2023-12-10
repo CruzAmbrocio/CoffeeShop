@@ -8,6 +8,8 @@ import PaymentFooter from '../components/PaymentFooter';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomIcon from '../components/CustomIcon';
 import PopUpAnimation from '../components/PopUpAnimation';
+import { useDispatch } from 'react-redux';
+import { addToOrderHistory } from '../store/CartSlice';
 
 const PaymentList = [
   {
@@ -30,14 +32,14 @@ const PaymentList = [
 ]
 
 const PaymentScreen = ({ navigation, route }: any) => {
+  const dispatch = useDispatch();
 
   const [paymentMode, setPaymentMode] = useState('Credit Card');
   const [showAnimation, setShowAnimation] = useState(false);
 
   const buttonPressHandler = () => {
     setShowAnimation(true);
-    // add to horder history
-    // calculate price
+    dispatch(addToOrderHistory(''))
     setTimeout(() => {
       setShowAnimation(false);
       navigation.navigate('History');
