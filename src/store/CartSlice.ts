@@ -19,9 +19,15 @@ interface CartItem {
   prices: CartPrice[];
 }
 
+interface OrderHistoryItem {
+  OrderDate: string;
+  CartList: CartItem[];
+  CartListPrice: string;
+}
+
 interface CartState {
   cartList: CartItem[];
-  orderHistory: CartItem[];
+  orderHistory: OrderHistoryItem[];
 }
 
 const initialState: CartState = {
@@ -77,10 +83,40 @@ export const CartSlice = createSlice({
         }
       }
     },
+    addToOrderHistory: (state, action) => {
+      let total = state.cartList.reduce((total, item) => {
+        return (
+          total +
+          item.prices.reduce((itemTotal, price) => {
+            return itemTotal + parseFloat(price.price) * price.quantity;
+          }, 0)
+        );
+      }, 0);
+      if (state.orderHistory.length > 0) {
+        state.orderHistory.unshift({
+          OrderDate:
+            new Date().toDateString() +
+            ' ' +
+            new Date().toLocaleTimeString(),
+          CartList: state.cartList,
+          CartListPrice: total.toFixed(2).toString(),
+        });
+      } else {
+        state.orderHistory.push({
+          OrderDate:
+            new Date().toDateString() +
+            ' ' +
+            new Date().toLocaleTimeString(),
+          CartList: state.cartList,
+          CartListPrice: total.toFixed(2).toString(),
+        });
+      }
+      state.cartList = [];
+    }
   }
 });
 
-export const { addToCart, removeFromCart } = CartSlice.actions;
+export const { addToCart, removeFromCart, addToOrderHistory } = CartSlice.actions;
 export const selectCartList = (state: RootState) => state.cart.cartList;
 export const selectOrderHistory = (state: RootState) => state.cart.orderHistory;
 
