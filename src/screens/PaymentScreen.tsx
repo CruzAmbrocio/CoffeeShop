@@ -5,7 +5,7 @@ import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/th
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import PaymentMethod from '../components/PaymentMethod';
 import PaymentFooter from '../components/PaymentFooter';
-import LinearGradient from 'react-native-linear-gradient';
+import {LinearGradient} from "expo-linear-gradient";
 import CustomIcon from '../components/CustomIcon';
 import PopUpAnimation from '../components/PopUpAnimation';
 import { useDispatch } from 'react-redux';

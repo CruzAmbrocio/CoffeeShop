@@ -1,7 +1,7 @@
 import { ImageProps, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ImageBackgroundInfo from './ImageBackgroundInfo'
-import LinearGradient from 'react-native-linear-gradient'
+import {LinearGradient} from "expo-linear-gradient";
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme'
 
 interface FavoriteItemsProps {

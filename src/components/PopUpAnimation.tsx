@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { COLORS } from '../theme/theme'
-import LottieView from 'lottie-react-native'
+import { COLORS, FONTFAMILY, FONTSIZE } from '../theme/theme'
+import LottieView from 'lottie-react-native';
 
 interface PopUpAnimationProps {
   style: any,
@@ -14,7 +14,9 @@ const PopUpAnimation: React.FC<PopUpAnimationProps> = ({
 }) => {
   return (
     <View style={styles.lottieAnimationContainer}>
-      <LottieView style={style} source={source} autoPlay loop={false} />
+      <Text style={styles.lottieText}>{"LottieView animation fail 😒"}</Text>
+      <Text style={styles.lottieText}>{""}</Text>
+      <Text style={styles.lottieText}>{"PAID"}</Text>
     </View>
   )
 }
@@ -30,6 +32,12 @@ const styles = StyleSheet.create({
     zIndex: 10000,
     backgroundColor: COLORS.secondaryBlackRGBA,
     justifyContent: 'center'
+  },
+  lottieText: {
+    fontFamily: FONTFAMILY.poppins_medium,
+    fontSize: FONTSIZE.size_16,
+    color: COLORS.primaryOrangeHex,
+    textAlign: 'center'
   }
 });
 

@@ -1,4 +1,34 @@
 {
-  "name": "CoffeeShop",
-  "displayName": "Coffee House"
+  "expo": {
+    "name": "CoffeeShop",
+    "slug": "CoffeeShop",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon/ic_launcher_round.png",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/2c6e4f56-b7cd-4f43-91b7-a703e21d15d9"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cruz.ambrocio.CoffeeShop"
+    },
+    "android": {
+      "package": "com.cruz.ambrocio.CoffeeShop"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2c6e4f56-b7cd-4f43-91b7-a703e21d15d9"
+      }
+    },
+    "owner": "cruz.ambrocio",
+    "runtimeVersion": "exposdk:49.0.0"
+  }
 }

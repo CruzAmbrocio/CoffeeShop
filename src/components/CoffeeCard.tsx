@@ -1,6 +1,6 @@
 import { Dimensions, ImageBackground, ImageProps, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import LinearGradient from 'react-native-linear-gradient';
+import {LinearGradient} from "expo-linear-gradient";
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 import CustomIcon from './CustomIcon';
 import BGIcon from './BGIcon';

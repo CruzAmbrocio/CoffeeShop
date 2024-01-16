@@ -6,7 +6,7 @@ import CartScreen from '../screens/CartScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import OrderHistory from '../screens/OrderHistory';
 import { COLORS } from '../theme/theme';
-import { BlurView } from '@react-native-community/blur';
+import { BlurView } from 'expo-blur';
 import CustomIcon from '../components/CustomIcon';
 
 const TabsNavigator = () => {
@@ -20,7 +20,7 @@ const TabsNavigator = () => {
         tabBarShowLabel:false,
         tabBarStyle: styles.tabBarStyle,
         tabBarBackground:()=>(
-          <BlurView overlayColor='' blurAmount={15} style={styles.BlurViewStyles}/>
+          <BlurView tint="dark" intensity={15} style={styles.BlurViewStyles}/>
         )
       }}>
       <Tab.Screen
