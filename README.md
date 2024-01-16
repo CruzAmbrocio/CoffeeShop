@@ -14,7 +14,8 @@
 <br><br>
 
 ### App preview images:
-<img src="https://github.com/CruzAmbrocio/CoffeeShop/assets/10201059/d822bc45-bec0-4953-b4cf-2b53657e3618" width="200" />
+
+<img src="https://github.com/CruzAmbrocio/CoffeeShop/assets/10201059/63e38b92-c46b-45ec-b8e0-71cd03f30003" width="200" />
 <img src="https://github.com/CruzAmbrocio/CoffeeShop/assets/10201059/6dc2cf99-65c8-4c9e-a044-62c1baaa74f8" width="200" />
-<img src="https://github.com/CruzAmbrocio/CoffeeShop/assets/10201059/fb41f44a-11c0-44f9-92d6-5d6cdda6c191" width="200" />
 <img src="https://github.com/CruzAmbrocio/CoffeeShop/assets/10201059/79003c3b-8959-436b-bf45-eb2eb3575442" width="200" />
+<img src="https://github.com/CruzAmbrocio/CoffeeShop/assets/10201059/d822bc45-bec0-4953-b4cf-2b53657e3618" width="200" />
